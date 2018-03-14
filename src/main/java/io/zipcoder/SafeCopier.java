@@ -17,12 +17,11 @@ public class SafeCopier extends Copier {
 
     public void run() {
         sharedLock.lock();
-        while (stringIterator.hasNext()) {
+        if (stringIterator.hasNext()) {
 
             copied += stringIterator.next() + " ";
 
         }
-        System.out.println(copied);
         sharedLock.unlock();
     }
 
