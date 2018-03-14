@@ -25,11 +25,11 @@ public class MonkeyTypewriter {
         // A Tale Of Two Cities.
         UnsafeCopier unsafeCopy = new UnsafeCopier(introduction);
 
-        Thread monkeySteve = new Thread(unsafeCopy, "T1");
-        Thread monkeyGuido = new Thread(unsafeCopy, "T2");
-        Thread monkeyJon = new Thread(unsafeCopy, "T3");
-        Thread monkeyMichelle = new Thread(unsafeCopy, "T4");
-        Thread monkeyHeather = new Thread(unsafeCopy, "T5");
+        Thread monkeySteve = new Thread(unsafeCopy, "[1]");
+        Thread monkeyGuido = new Thread(unsafeCopy, "[2]");
+        Thread monkeyJon = new Thread(unsafeCopy, "[3]");
+        Thread monkeyMichelle = new Thread(unsafeCopy, "[4]");
+        Thread monkeyHeather = new Thread(unsafeCopy, "[5]");
 
 
             monkeySteve.start();
@@ -41,11 +41,11 @@ public class MonkeyTypewriter {
 
         SafeCopier safeCopy = new SafeCopier(introduction);
 
-        Thread monkeyJoe = new Thread(safeCopy, "T6");
-        Thread monkeyVince = new Thread(safeCopy, "T7");
-        Thread monkeyKibret = new Thread(safeCopy,"T8");
-        Thread monkeyAmy = new Thread(safeCopy,"T9");
-        Thread monkeyDan = new Thread(safeCopy,"T10");
+        Thread monkeyJoe = new Thread(safeCopy, "[6]");
+        Thread monkeyVince = new Thread(safeCopy, "[7]");
+        Thread monkeyKibret = new Thread(safeCopy,"[8]");
+        Thread monkeyAmy = new Thread(safeCopy,"[9]");
+        Thread monkeyDan = new Thread(safeCopy,"[10]");
 
         monkeyJoe.start();
         monkeyVince.start();
