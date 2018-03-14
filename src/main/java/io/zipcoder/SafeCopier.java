@@ -14,13 +14,13 @@ public class SafeCopier extends Copier {
     private Lock lock = new ReentrantLock();
 
     public void run() {
-        try {
             while (stringIterator.hasNext()) {
                 lock.lock();
-                String word = stringIterator.next();
-                copied = copied + " " + word;
+                if (stringIterator.hasNext()) {
+                    String word = stringIterator.next();
+                    copied = copied + " " + word;
+                }
                 lock.unlock();
             }
-        } catch (NoSuchElementException e){ }
     }
 }
