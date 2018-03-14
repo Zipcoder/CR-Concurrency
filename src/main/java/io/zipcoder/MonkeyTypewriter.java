@@ -1,7 +1,9 @@
 package io.zipcoder;
 
 public class MonkeyTypewriter {
+
     public static void main(String[] args) {
+
         String introduction = "It was the best of times,\n" +
                 "it was the blurst of times,\n" +
                 "it was the age of wisdom,\n" +
@@ -25,18 +27,40 @@ public class MonkeyTypewriter {
         // A Tale Of Two Cities.
 
         UnsafeCopier unsafeCopier = new UnsafeCopier(introduction);
+        SafeCopier safeCopier = new SafeCopier(introduction);
 
-        Thread monkey = new Thread(unsafeCopier);
-        Thread monkey1 = new Thread(unsafeCopier);
-        Thread monkey2 = new Thread(unsafeCopier);
-        Thread monkey3 = new Thread(unsafeCopier);
-        Thread monkey4 = new Thread(unsafeCopier);
+        Thread[] unsafeMonkey = new Thread[5];
+        Thread[] safeMonkey = new Thread[5];
 
-        monkey.start();
-        monkey1.start();
-        monkey2.start();
-        monkey3.start();
-        monkey4.start();
+        for (int i = 0; i < unsafeMonkey.length; i++) {
+            unsafeMonkey[i] = new Thread(unsafeCopier);
+            safeMonkey[i] = new Thread(safeCopier);
+        }
+
+        for (Thread thread : unsafeMonkey) {
+                thread.start();
+            }
+            for (Thread thread : safeMonkey) {
+                thread.start();
+            }
+
+//       while ( unsafeCopier.stringIterator.hasNext() || safeCopier.stringIterator.hasNext()) {
+//
+//            for (int i = 0; i < unsafeMonkey.length; i++) {
+//                unsafeMonkey[i] = new Thread(unsafeCopier);
+//                safeMonkey[i] = new Thread(safeCopier);
+//            }
+//
+//            for (Thread thread : unsafeMonkey) {
+//                thread.start();
+//            }
+//            for (Thread thread : safeMonkey) {
+//                thread.start();
+//            }
+//
+//
+//        }
+
 
         // This wait is here because main is still a thread and we want the main method to print the finished copies
         // after enough time has passed.
@@ -45,8 +69,14 @@ public class MonkeyTypewriter {
         } catch(InterruptedException e) {
             System.out.println("MAIN INTERRUPTED");
         }
-
+        System.out.println("_________________________UNSAFE_TEST__________________________________");
         System.out.println(unsafeCopier.copied);
+
+        System.out.println("_________________________SAFE_TEST____________________________________");
+        System.out.println(safeCopier.copied);
+
+
+
 
         // Print out the copied versions here.
     }
