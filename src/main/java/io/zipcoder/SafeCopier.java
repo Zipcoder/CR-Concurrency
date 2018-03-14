@@ -20,7 +20,7 @@ public class SafeCopier extends Copier {
             lock.lock();
             if (stringIterator.hasNext()) {
                 String word = stringIterator.next();
-                copied = copied + " " + word;
+                copied += word + " ";
             }
             lock.unlock();
         }

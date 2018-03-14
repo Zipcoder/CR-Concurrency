@@ -31,7 +31,6 @@ public class MonkeyTypewriter {
         for (Thread thread: unsafeArray) {
             thread.start();
         }
-        unsafeCopier.copied = unsafeCopier.copied.substring(1, unsafeCopier.copied.length());
 
         SafeCopier safeCopier = new SafeCopier(introduction);
         Thread[] safeArray = new Thread[5];
@@ -42,7 +41,6 @@ public class MonkeyTypewriter {
             thread.start();
         }
 
-        safeCopier.copied = safeCopier.copied.substring(1, safeCopier.copied.length());
 
         // This wait is here because main is still a thread and we want the main method to print the finished copies
         // after enough time has passed.

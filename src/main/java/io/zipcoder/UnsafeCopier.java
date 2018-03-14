@@ -15,7 +15,7 @@ public class UnsafeCopier extends Copier {
         try {
             while (stringIterator.hasNext()) {
                 String word = stringIterator.next();
-                copied = copied + " " + word;
+                copied += word + " ";
             }
         } catch (NoSuchElementException e) { }
     }
