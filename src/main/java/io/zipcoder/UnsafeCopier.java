@@ -12,6 +12,13 @@ public class UnsafeCopier extends Copier {
         super(toCopy);
     }
 
+    public void run(){
+        while (stringIterator.hasNext()) {
+            copied += stringIterator.next() + " ";
+        }
+    }
+}
+
 //    public void run() {
 //
 //        while(stringIterator.hasNext()){
@@ -32,9 +39,4 @@ public class UnsafeCopier extends Copier {
 //        return myUnsafeBuilder;
 //    }
 
-    public void run(){
-        while (stringIterator.hasNext()) {
-            copied += stringIterator.next() + " ";
-        }
-    }
-}
+

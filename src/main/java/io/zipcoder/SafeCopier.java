@@ -17,7 +17,6 @@ public class SafeCopier extends  Copier{
     }
 
     public void run() {
-        mySharedLock.lock();
         while (stringIterator.hasNext()) {
             mySharedLock.lock();
             copied += stringIterator.next() + " ";
@@ -27,3 +26,17 @@ public class SafeCopier extends  Copier{
 
     }
 }
+
+/*
+public void run() {
+        mySharedLock.lock();
+        if (stringIterator.hasNext()) {
+            mySharedLock.lock();
+            copied += stringIterator.next() + " ";
+            mySharedLock.unlock();
+
+        }
+
+    }
+}
+ */
