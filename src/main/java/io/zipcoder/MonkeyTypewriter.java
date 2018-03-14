@@ -1,6 +1,17 @@
 package io.zipcoder;
 
 public class MonkeyTypewriter {
+
+    private String inputToCopy;
+
+    public MonkeyTypewriter() {
+       this.inputToCopy = "";
+    }
+
+    public MonkeyTypewriter(String inputToCopy) {
+        this.inputToCopy = inputToCopy;
+    }
+
     public static void main(String[] args) {
         String introduction = "It was the best of times,\n" +
                 "it was the blurst of times,\n" +
