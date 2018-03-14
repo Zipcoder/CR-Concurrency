@@ -12,9 +12,17 @@ public class UnsafeCopier extends Copier{
     }
 
     public void run() {
+        try{
+            Thread.sleep(50);
+        }
+        catch(InterruptedException e){
+            System.out.println("SLEEP INTERRUPTED");
+        }
+
         while(stringIterator.hasNext()){
+            StringBuilder builder = new StringBuilder();
             try {
-                this.copied = this.copied + stringIterator.next() + " " + Thread.currentThread().getName();
+                this.copied += builder.append(stringIterator.next() + " " + Thread.currentThread().getName()).toString();
             }
             catch(NoSuchElementException e){
 

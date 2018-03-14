@@ -31,12 +31,12 @@ public class MonkeyTypewriter {
         Thread monkeyMichelle = new Thread(unsafeCopy, "[4]");
         Thread monkeyHeather = new Thread(unsafeCopy, "[5]");
 
+        Thread[] unsafeThreads = {monkeySteve,monkeyGuido,monkeyJon,monkeyMichelle,monkeyHeather};
 
-            monkeySteve.start();
-            monkeyGuido.start();
-            monkeyJon.start();
-            monkeyMichelle.start();
-            monkeyHeather.start();
+        for(Thread t : unsafeThreads){
+            t.start();
+        }
+
 
 
         SafeCopier safeCopy = new SafeCopier(introduction);
@@ -47,11 +47,24 @@ public class MonkeyTypewriter {
         Thread monkeyAmy = new Thread(safeCopy,"[9]");
         Thread monkeyDan = new Thread(safeCopy,"[10]");
 
-        monkeyJoe.start();
-        monkeyVince.start();
-        monkeyKibret.start();
-        monkeyAmy.start();
-        monkeyDan.start();
+        Thread[] safeThreads = {monkeyJoe,monkeyVince,monkeyKibret,monkeyAmy,monkeyDan};
+        long startTime = System.currentTimeMillis();
+        for(Thread t : safeThreads){
+            t.start();
+        }
+
+        for(Thread t : safeThreads){
+            try {
+                t.join();
+            }
+            catch(InterruptedException e){
+                System.out.println("MONKEY INTERRUPTED");
+            }
+        }
+
+        long duration = System.currentTimeMillis()-startTime;
+
+
 
 
 
@@ -67,6 +80,10 @@ public class MonkeyTypewriter {
         System.out.println("Unsafe Copy: \n" + unsafeCopy.copied);
         System.out.println();
 
+
+
+
+        System.out.println("Multi-threaded process computed in " + duration + "ms");
         System.out.println("Safe Copy: \n" + safeCopy.copied);
     }
 }
