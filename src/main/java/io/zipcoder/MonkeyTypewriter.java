@@ -27,18 +27,15 @@ public class MonkeyTypewriter {
         Copier s = new SafeCopier(introduction);
         Thread[] unsafeThreads = new Thread[5];
         Thread[] safeThreads = new Thread[5];
-
-        while (r.stringIterator.hasNext() || s.stringIterator.hasNext()) {
-            for (int i = 0; i < unsafeThreads.length; i++) {
-                unsafeThreads[i] = new Thread(r);
-                safeThreads[i] = new Thread(s);
-            }
-            for (Thread thread : unsafeThreads) {
-                thread.start();
-            }
-            for (Thread thread : safeThreads) {
-                thread.start();
-            }
+        for (int i = 0; i < unsafeThreads.length; i++) {
+            unsafeThreads[i] = new Thread(r);
+            safeThreads[i] = new Thread(s);
+        }
+        for (Thread thread : unsafeThreads) {
+            thread.start();
+        }
+        for (Thread thread : safeThreads) {
+            thread.start();
         }
         // This wait is here because main is still a thread and we want the main method to print the finished copies
         // after enough time has passed.
