@@ -63,5 +63,149 @@ public class SafeCopierTest {
         //Then
         Assert.assertEquals(expected, actual);
     }
+    @Test
+    public void safeCopyTest2() {
+        //Given BEFORE
+
+        //When
+        monkey1.start();
+        monkey2.start();
+        monkey3.start();
+        monkey4.start();
+        monkey5.start();
+
+        String expected = introduction;
+        String actual = sc.copied;
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+    @Test
+    public void safeCopyTest3() {
+        //Given BEFORE
+
+        //When
+        monkey1.start();
+        monkey2.start();
+        monkey3.start();
+        monkey4.start();
+        monkey5.start();
+
+        String expected = introduction;
+        String actual = sc.copied;
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+    @Test
+    public void safeCopyTest4() {
+        //Given BEFORE
+
+        //When
+        monkey1.start();
+        monkey2.start();
+        monkey3.start();
+        monkey4.start();
+        monkey5.start();
+
+        String expected = introduction;
+        String actual = sc.copied;
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+    @Test
+    public void safeCopyTest5() {
+        //Given BEFORE
+
+        //When
+        monkey1.start();
+        monkey2.start();
+        monkey3.start();
+        monkey4.start();
+        monkey5.start();
+
+        String expected = introduction;
+        String actual = sc.copied;
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+    @Test
+    public void safeCopyTest6() {
+        //Given BEFORE
+
+        //When
+        monkey1.start();
+        monkey2.start();
+        monkey3.start();
+        monkey4.start();
+        monkey5.start();
+
+        String expected = introduction;
+        String actual = sc.copied;
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+    @Test
+    public void safeCopyTest7() {
+        //Given BEFORE
+
+        //When
+        monkey1.start();
+        monkey2.start();
+        monkey3.start();
+        monkey4.start();
+        monkey5.start();
+
+        String expected = introduction;
+        String actual = sc.copied;
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+    @Test
+    public void safeCopyTest8() {
+        //Given BEFORE
+
+        //When
+        monkey1.start();
+        monkey2.start();
+        monkey3.start();
+        monkey4.start();
+        monkey5.start();
+
+        String expected = introduction;
+        String actual = sc.copied;
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+    @Test
+    public void safeCopyTest9() {
+        //Given BEFORE
+
+        //When
+        monkey1.start();
+        monkey2.start();
+        monkey3.start();
+        monkey4.start();
+        monkey5.start();
+
+        String expected = introduction;
+        String actual = sc.copied;
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+    @Test
+    public void safeCopyTest10() {
+        //Given BEFORE
+
+        //When
+        monkey1.start();
+        monkey2.start();
+        monkey3.start();
+        monkey4.start();
+        monkey5.start();
+
+        String expected = introduction;
+        String actual = sc.copied;
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
 
 }
