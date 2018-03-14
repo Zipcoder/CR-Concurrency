@@ -25,47 +25,28 @@ public class MonkeyTypewriter {
         // A Tale Of Two Cities.
         Copier r = new UnsafeCopier(introduction);
         Copier s = new SafeCopier(introduction);
-        while(r.stringIterator.hasNext() || s.stringIterator.hasNext()) {
-            Thread monkey1 = new Thread(r);
-            Thread monkey2 = new Thread(r);
-            Thread monkey3 = new Thread(r);
-            Thread monkey4 = new Thread(r);
-            Thread monkey5 = new Thread(r);
-            Thread monkey6 = new Thread(s);
-            Thread monkey7 = new Thread(s);
-            Thread monkey8 = new Thread(s);
-            Thread monkey9 = new Thread(s);
-            Thread monkey10 = new Thread(s);
+        Thread[] unsafeThreads = new Thread[5];
+        Thread[] safeThreads = new Thread[5];
 
-            monkey1.start();
-            monkey2.start();
-            monkey3.start();
-            monkey4.start();
-            monkey5.start();
-            monkey6.start();
-            monkey7.start();
-            monkey8.start();
-            monkey9.start();
-            monkey10.start();
-
-//            monkey1.interrupt();
-//            monkey2.interrupt();
-//            monkey3.interrupt();
-//            monkey4.interrupt();
-//            monkey5.interrupt();
-//            monkey6.interrupt();
-//            monkey7.interrupt();
-//            monkey8.interrupt();
-//            monkey9.interrupt();
-//            monkey10.interrupt();
-        }
-            // This wait is here because main is still a thread and we want the main method to print the finished copies
-            // after enough time has passed.
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                System.out.println("MAIN INTERRUPTED");
+        while (r.stringIterator.hasNext() || s.stringIterator.hasNext()) {
+            for (int i = 0; i < unsafeThreads.length; i++) {
+                unsafeThreads[i] = new Thread(r);
+                safeThreads[i] = new Thread(s);
             }
+            for (Thread thread : unsafeThreads) {
+                thread.start();
+            }
+            for (Thread thread : safeThreads) {
+                thread.start();
+            }
+        }
+        // This wait is here because main is still a thread and we want the main method to print the finished copies
+        // after enough time has passed.
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            System.out.println("MAIN INTERRUPTED");
+        }
 
         // Print out the copied versions here.
         System.out.println("Unsafe Copier: " + r.copied);
