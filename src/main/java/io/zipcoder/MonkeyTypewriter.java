@@ -23,6 +23,49 @@ public class MonkeyTypewriter {
         // Do all of the Monkey / Thread building here
         // For each Copier(one safe and one unsafe), create and start 5 monkeys copying the introduction to
         // A Tale Of Two Cities.
+        UnsafeCopier unsafeCopy = new UnsafeCopier(introduction);
+
+        Thread monkeySteve = new Thread(unsafeCopy, "[1]");
+        Thread monkeyGuido = new Thread(unsafeCopy, "[2]");
+        Thread monkeyJon = new Thread(unsafeCopy, "[3]");
+        Thread monkeyMichelle = new Thread(unsafeCopy, "[4]");
+        Thread monkeyHeather = new Thread(unsafeCopy, "[5]");
+
+        Thread[] unsafeThreads = {monkeySteve,monkeyGuido,monkeyJon,monkeyMichelle,monkeyHeather};
+
+        for(Thread t : unsafeThreads){
+            t.start();
+        }
+
+
+
+        SafeCopier safeCopy = new SafeCopier(introduction);
+
+        Thread monkeyJoe = new Thread(safeCopy, "[6]");
+        Thread monkeyVince = new Thread(safeCopy, "[7]");
+        Thread monkeyKibret = new Thread(safeCopy,"[8]");
+        Thread monkeyAmy = new Thread(safeCopy,"[9]");
+        Thread monkeyDan = new Thread(safeCopy,"[10]");
+
+        Thread[] safeThreads = {monkeyJoe,monkeyVince,monkeyKibret,monkeyAmy,monkeyDan};
+        long startTime = System.currentTimeMillis();
+        for(Thread t : safeThreads){
+            t.start();
+        }
+
+        for(Thread t : safeThreads){
+            try {
+                t.join();
+            }
+            catch(InterruptedException e){
+                System.out.println("MONKEY INTERRUPTED");
+            }
+        }
+
+        long duration = System.currentTimeMillis()-startTime;
+
+
+
 
 
         // This wait is here because main is still a thread and we want the main method to print the finished copies
@@ -34,5 +77,13 @@ public class MonkeyTypewriter {
         }
 
         // Print out the copied versions here.
+        System.out.println("Unsafe Copy: \n" + unsafeCopy.copied);
+        System.out.println();
+
+
+
+
+        System.out.println("Multi-threaded process computed in " + duration + "ms");
+        System.out.println("Safe Copy: \n" + safeCopy.copied);
     }
 }
