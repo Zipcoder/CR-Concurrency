@@ -18,8 +18,8 @@ public class SafeCopier extends Copier {
     public void run() {
 
         while(stringIterator.hasNext()) {
-            copied += stringIterator.next() + " ";
             lock.lock();
+            copied += stringIterator.next() + " ";
             lock.unlock();
         }
 
