@@ -28,36 +28,40 @@ public class MonkeyTypewriter {
         //created threads to avoid making 20 lines
         UnsafeCopier badCopier = new UnsafeCopier(introduction);
         SafeCopier safeCopier = new SafeCopier(introduction);
-        Thread[] badCopierMonkeys = new Thread[5];
-        Thread[] safeCopierMonkeys = new Thread[5];
+        Thread[] badCopierMonkeys = new Thread[1];
+        Thread[] safeCopierMonkeys = new Thread[1];
 
+        int count = 0;
 
-        while( safeCopier.stringIterator.hasNext() || badCopier.stringIterator.hasNext()) {
-
+        while (safeCopier.stringIterator.hasNext() || badCopier.stringIterator.hasNext()) {
+            //creating new monkeys...rehabilitating the old ones and releasing them into the wild.
             for (int i = 0; i < badCopierMonkeys.length; i++) {
                 badCopierMonkeys[i] = new Thread(badCopier);
+                badCopierMonkeys[i].start();
+
                 safeCopierMonkeys[i] = new Thread(safeCopier);
-            }
-            for (Thread workerMonkeys : badCopierMonkeys) {
-                workerMonkeys.start();
-            }
-            for (Thread workerMonkeys : safeCopierMonkeys) {
-                workerMonkeys.start();
+                safeCopierMonkeys[i].start();
+
+                count ++;
+//            }
+//            for (Thread workerMonkeys : badCopierMonkeys) {
+//            }
+//            for (Thread workerMonkeys : safeCopierMonkeys) {
+//            }
             }
         }
-        // This wait is here because main is still a thread and we want the main method to print the finished copies
-        // after enough time has passed.
-        try {
-            Thread.sleep(1000);
-        } catch(InterruptedException e) {
-            System.out.println("MAIN INTERRUPTED");
+            // This wait is here because main is still a thread and we want the main method to print the finished copies
+            // after enough time has passed.
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("MAIN INTERRUPTED");
+            }
+
+            System.out.println("Unsafe Copier: " + badCopier.copied + "\n" + "---------------");
+            System.out.println("Safe Copier: " + safeCopier.copied);
+            System.out.println(count);
+            // Print out the copied versions here.
         }
 
-        System.out.println("Unsafe Copier: " + badCopier.copied + "\n" + "---------------");
-        System.out.println("Safe Copier: " + safeCopier.copied);
-
-
-
-        // Print out the copied versions here.
-    }
 }

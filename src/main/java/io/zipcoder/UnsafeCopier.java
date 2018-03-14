@@ -18,8 +18,11 @@ public class UnsafeCopier extends Copier {
     }
 
     public void run() {
-        //monkey grab the next word and append it to the copy.
-        if (stringIterator.hasNext()) {
+        //monkey grab the next word and append it to the copy - then get released into the wild
+
+        //not an IF statement because the if statement kills the monkey
+        //and we are not in the monkey killing business
+        while (stringIterator.hasNext()) {
             this.copied += stringIterator.next() + " ";
         }
     }

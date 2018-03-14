@@ -20,15 +20,12 @@ public class SafeCopier extends Copier {
     public void run() {
 
         sharedLock.lock();
-        if (stringIterator.hasNext()) {
-            this.copied += stringIterator.next() + " ";
+        //not an IF statement because the if statement kills the monkey
+        //and we are not in the monkey killing business
+        while (stringIterator.hasNext()) {
+            copied += stringIterator.next() + " ";
         }
         sharedLock.unlock();
 
     }
-    /*
-    sharedLock.tryLock();
-    while(stringIterator.hasNext()) {
-    t
-     */
 }
