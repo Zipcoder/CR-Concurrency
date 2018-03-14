@@ -76,6 +76,7 @@ public class MonkeyTypewriter {
 
         // Print out the copied versions here.
         unsafeOutput(unsafeCopier.copied);
+        System.out.println();
         safeOutput(safeCopier.copied);
     }
 

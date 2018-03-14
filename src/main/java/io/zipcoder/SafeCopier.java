@@ -9,18 +9,18 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class SafeCopier extends Copier {
 
-    Lock sharedLock = new ReentrantLock();
-
     public SafeCopier(String toCopy) {
         super(toCopy);
     }
 
     public void run() {
-        sharedLock.lock();
-        if (stringIterator.hasNext()) {
-            copied += stringIterator.next() + " ";
+        while (stringIterator.hasNext()) {
+            synchronized (stringIterator) {
+                if (stringIterator.hasNext()) {
+                    copied += stringIterator.next() + " ";
+                }
+            }
         }
-        sharedLock.unlock();
     }
 
 }

@@ -10,8 +10,10 @@ public class UnsafeCopier extends Copier {
     }
 
     public void run() {
-        if (stringIterator.hasNext()) {
-            copied += stringIterator.next() + " ";
+        while (stringIterator.hasNext()) {
+            if (stringIterator.hasNext()) {
+                copied += stringIterator.next() + " ";
+            }
         }
     }
 
