@@ -1,5 +1,6 @@
 package io.zipcoder;
 
+import java.util.NoSuchElementException;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -9,23 +10,34 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class SafeCopier extends Copier {
 
+
     private Lock copyLock = new ReentrantLock();
+
 
     public SafeCopier(String toCopy) {
         super(toCopy);
     }
 
+
+//    public synchronized void run() {
+//        while(stringIterator.hasNext()){
+//            this.copied = this.copied + stringIterator.next() + " " + Thread.currentThread().getName();
+//        }
+//
+//    }
+
     public void run() {
 
-        copyLock.lock();
-        try {
-            while (stringIterator.hasNext()) {
+        while (stringIterator.hasNext()) {
+            copyLock.lock();
+            try {
+                this.copied += stringIterator.next() + " " + Thread.currentThread().getName();
+            } catch (NoSuchElementException e) {
 
-                this.copied +=  stringIterator.next() + " ";
+            } finally {
+                copyLock.unlock();
 
             }
-        } finally {
-            copyLock.unlock();
         }
 
 
