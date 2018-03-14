@@ -10,5 +10,11 @@ public class UnsafeCopier extends Copier {
     }
 
     public void run() {
+        StringBuilder sb = new StringBuilder();
+
+        while (this.stringIterator.hasNext()) {
+            sb.append(this.stringIterator.next() + " " + Thread.currentThread().getName() + " ");
+            this.copied = sb.toString();
+        }
     }
 }

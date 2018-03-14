@@ -1,6 +1,19 @@
 package io.zipcoder;
 
+import java.util.ArrayList;
+
 public class MonkeyTypewriter {
+
+    private String inputToCopy;
+
+    public MonkeyTypewriter() {
+       this.inputToCopy = "";
+    }
+
+    public MonkeyTypewriter(String inputToCopy) {
+        this.inputToCopy = inputToCopy;
+    }
+
     public static void main(String[] args) {
         String introduction = "It was the best of times,\n" +
                 "it was the blurst of times,\n" +
@@ -24,6 +37,34 @@ public class MonkeyTypewriter {
         // For each Copier(one safe and one unsafe), create and start 5 monkeys copying the introduction to
         // A Tale Of Two Cities.
 
+        int numberOfUnsafeMonkeys = 5;
+        int numberOfSafeMonkeys = 5;
+
+        // UNSAFE COPYING
+        UnsafeCopier unsafeCopier = new UnsafeCopier(introduction);
+        ArrayList<Thread> unsafeCopierThreads = new ArrayList<Thread>();
+
+        while (numberOfUnsafeMonkeys > 0) {
+            unsafeCopierThreads.add(new Thread(unsafeCopier));
+            numberOfUnsafeMonkeys--;
+        }
+
+        for (Thread unsafeCopierThread : unsafeCopierThreads) {
+            unsafeCopierThread.start();
+        }
+
+        // SAFE COPYING
+        SafeCopier safeCopier = new SafeCopier(introduction);
+        ArrayList<Thread> safeCopierThreads = new ArrayList<Thread>();
+
+        while (numberOfSafeMonkeys > 0) {
+            safeCopierThreads.add(new Thread(safeCopier));
+            numberOfSafeMonkeys--;
+        }
+
+        for (Thread safeCopierThread : safeCopierThreads) {
+            safeCopierThread.start();
+        }
 
         // This wait is here because main is still a thread and we want the main method to print the finished copies
         // after enough time has passed.
@@ -34,5 +75,8 @@ public class MonkeyTypewriter {
         }
 
         // Print out the copied versions here.
+        System.out.println(unsafeCopier.copied);
+        System.out.println("*************************************************");
+        System.out.println(safeCopier.copied);
     }
 }
