@@ -1,5 +1,6 @@
 package io.zipcoder;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -14,13 +15,22 @@ public class SafeCopier extends Copier {
     }
 
     public void run() {
-        sharedLock.lock();
-        while(stringIterator.hasNext()){
-            sharedLock.lock();
-            copied += stringIterator.next() + " ";
-            sharedLock.unlock();
+        boolean keepGoing = true;
+        try {
+            TimeUnit.MILLISECONDS.sleep(30);
+        } catch (InterruptedException e){
+            e.printStackTrace();
         }
-        
+        while(keepGoing){
+            if(sharedLock.tryLock()){
+                if (stringIterator.hasNext()){
+                    copied += stringIterator.next() + " " + Thread.currentThread().getName() + " ";
+                } else keepGoing = false;
+                sharedLock.unlock();
+            }
+
+        }
+
 
     }
 }
