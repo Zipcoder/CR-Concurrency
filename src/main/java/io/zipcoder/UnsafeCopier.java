@@ -7,8 +7,12 @@ public class UnsafeCopier extends Copier {
 
     public UnsafeCopier(String toCopy) {
         super(toCopy);
+
     }
 
     public void run() {
+        while (stringIterator.hasNext()){
+            copied += stringIterator.next() + " ";
+        }
     }
 }
