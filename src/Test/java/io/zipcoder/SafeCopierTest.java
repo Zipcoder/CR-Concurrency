@@ -1,8 +1,17 @@
 package io.zipcoder;
 
-public class MonkeyTypewriter {
-    public static void main(String[] args) {
-        String introduction = "It was the best of times,\n" +
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class SafeCopierTest {
+
+    String introduction;
+
+    @Before
+    public void setUp(){
+        introduction = "It was the best of times,\n" +
                 "it was the blurst of times,\n" +
                 "it was the age of wisdom,\n" +
                 "it was the age of foolishness,\n" +
@@ -19,24 +28,9 @@ public class MonkeyTypewriter {
                 "in short, the period was so far like the present period, that some of\n" +
                 "its noisiest authorities insisted on its being received, for good or for\n" +
                 "evil, in the superlative degree of comparison only.";
-
-        // Do all of the Monkey / Thread building here
-        // For each Copier(one safe and one unsafe), create and start 5 monkeys copying the introduction to
-        // A Tale Of Two Cities.
-
-        UnsafeCopier unsafeCopier = new UnsafeCopier(introduction);
-        Thread monkey1 = new Thread(unsafeCopier);
-        Thread monkey2 = new Thread(unsafeCopier);
-        Thread monkey3 = new Thread(unsafeCopier);
-        Thread monkey4 = new Thread(unsafeCopier);
-        Thread monkey5 = new Thread(unsafeCopier);
-
-        monkey1.start();
-        monkey2.start();
-        monkey3.start();
-        monkey4.start();
-        monkey5.start();
-
+    }
+    @Test
+    public void run() {
         SafeCopier safeCopier = new SafeCopier(introduction);
         Thread monkeySafe1 = new Thread(safeCopier);
         Thread monkeySafe2 = new Thread(safeCopier);
@@ -49,20 +43,5 @@ public class MonkeyTypewriter {
         monkeySafe3.start();
         monkeySafe4.start();
         monkeySafe5.start();
-
-
-        // This wait is here because main is still a thread and we want the main method to print the finished copies
-        // after enough time has passed.
-        try {
-            Thread.sleep(1000);
-        } catch(InterruptedException e) {
-            System.out.println("MAIN INTERRUPTED");
-        }
-
-        // Print out the copied versions here.
-        System.out.println("----------Unsafe----------");
-        System.out.println(unsafeCopier.copied);
-        System.out.println("----------Safe----------");
-        System.out.println(safeCopier.copied);
     }
 }
