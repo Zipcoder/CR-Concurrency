@@ -1,5 +1,7 @@
 package io.zipcoder;
 
+import java.util.ArrayList;
+
 public class MonkeyTypewriter {
     public static void main(String[] args) {
         String introduction = "It was the best of times,\n" +
@@ -24,6 +26,35 @@ public class MonkeyTypewriter {
         // For each Copier(one safe and one unsafe), create and start 5 monkeys copying the introduction to
         // A Tale Of Two Cities.
 
+        UnsafeCopier unsafeCopier = new UnsafeCopier(introduction);
+        Thread monkey1 = new Thread(unsafeCopier);
+        Thread monkey2 = new Thread(unsafeCopier);
+        Thread monkey3 = new Thread(unsafeCopier);
+        Thread monkey4 = new Thread(unsafeCopier);
+        Thread monkey5 = new Thread(unsafeCopier);
+
+        monkey1.start();
+        monkey2.start();
+        monkey3.start();
+        monkey4.start();
+        monkey5.start();
+
+        SafeCopier safeCopier = new SafeCopier(introduction);
+
+        ArrayList<Thread>monkeys = new ArrayList<Thread>();
+        Thread monkeySafe1 = new Thread(safeCopier);
+        Thread monkeySafe2 = new Thread(safeCopier);
+        Thread monkeySafe3 = new Thread(safeCopier);
+        Thread monkeySafe4 = new Thread(safeCopier);
+        Thread monkeySafe5 = new Thread(safeCopier);
+
+        monkeySafe1.start();
+        monkeySafe2.start();
+        monkeySafe3.start();
+        monkeySafe4.start();
+        monkeySafe5.start();
+
+
 
         // This wait is here because main is still a thread and we want the main method to print the finished copies
         // after enough time has passed.
@@ -34,5 +65,10 @@ public class MonkeyTypewriter {
         }
 
         // Print out the copied versions here.
+        System.out.println("----------Unsafe----------");
+        System.out.println(unsafeCopier.copied);
+        System.out.println("----------Safe----------");
+        System.out.println(safeCopier.copied);
+
     }
 }
