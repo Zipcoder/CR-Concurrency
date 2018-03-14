@@ -1,5 +1,7 @@
 package io.zipcoder;
 
+import java.util.ArrayList;
+
 public class MonkeyTypewriter {
     public static void main(String[] args) {
         String introduction = "It was the best of times,\n" +
@@ -38,6 +40,8 @@ public class MonkeyTypewriter {
         monkey5.start();
 
         SafeCopier safeCopier = new SafeCopier(introduction);
+
+        ArrayList<Thread>monkeys = new ArrayList<Thread>();
         Thread monkeySafe1 = new Thread(safeCopier);
         Thread monkeySafe2 = new Thread(safeCopier);
         Thread monkeySafe3 = new Thread(safeCopier);
@@ -49,6 +53,7 @@ public class MonkeyTypewriter {
         monkeySafe3.start();
         monkeySafe4.start();
         monkeySafe5.start();
+
 
 
         // This wait is here because main is still a thread and we want the main method to print the finished copies
@@ -64,5 +69,6 @@ public class MonkeyTypewriter {
         System.out.println(unsafeCopier.copied);
         System.out.println("----------Safe----------");
         System.out.println(safeCopier.copied);
+
     }
 }
