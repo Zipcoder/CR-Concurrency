@@ -1,6 +1,7 @@
 package io.zipcoder;
 
 public class MonkeyTypewriter {
+
     public static void main(String[] args) {
         String introduction = "It was the best of times,\n" +
                 "it was the blurst of times,\n" +
@@ -20,6 +21,34 @@ public class MonkeyTypewriter {
                 "its noisiest authorities insisted on its being received, for good or for\n" +
                 "evil, in the superlative degree of comparison only.";
 
+
+        UnsafeCopier uc = new UnsafeCopier(introduction);
+        Thread davy = new Thread(uc);
+        Thread peter = new Thread(uc);
+        Thread micky = new Thread(uc);
+        Thread michael = new Thread(uc);
+        Thread david = new Thread(uc);
+
+        david.start();
+        davy.start();
+        peter.start();
+        micky.start();
+        michael.start();
+
+        SafeCopier sc = new SafeCopier(introduction);
+        Thread joe = new Thread(sc);
+        Thread corrine = new Thread(sc);
+        Thread garret = new Thread(sc);
+        Thread kibret = new Thread(sc);
+        Thread pete = new Thread(sc);
+
+        joe.start();
+        corrine.start();
+        garret.start();
+        kibret.start();
+        pete.start();
+
+
         // Do all of the Monkey / Thread building here
         // For each Copier(one safe and one unsafe), create and start 5 monkeys copying the introduction to
         // A Tale Of Two Cities.
@@ -33,6 +62,11 @@ public class MonkeyTypewriter {
             System.out.println("MAIN INTERRUPTED");
         }
 
+
+        System.out.println(uc.copied);
+        System.out.println("         ---------------------          ");
+        System.out.println("             Safe Copier                ");
+        System.out.println(sc.copied);
         // Print out the copied versions here.
     }
 }
