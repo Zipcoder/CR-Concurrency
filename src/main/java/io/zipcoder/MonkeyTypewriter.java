@@ -41,7 +41,7 @@ public class MonkeyTypewriter {
 
                 safeCopierMonkeys[i] = new Thread(safeCopier);
                 safeCopierMonkeys[i].start();
-                
+
             }
             // This wait is here because main is still a thread and we want the main method to print the finished copies
             // after enough time has passed.
