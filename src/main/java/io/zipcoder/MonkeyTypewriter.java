@@ -1,9 +1,11 @@
 package io.zipcoder;
 
-public class MonkeyTypewriter {
-    public static void main(String[] args) {
+
+public class MonkeyTypewriter{
+
+    public static void main(String[] args) throws InterruptedException {
         String introduction = "It was the best of times,\n" +
-                "it was the blurst of times,\n" +
+                "it was the worst of times,\n" +
                 "it was the age of wisdom,\n" +
                 "it was the age of foolishness,\n" +
                 "it was the epoch of belief,\n" +
@@ -20,9 +22,31 @@ public class MonkeyTypewriter {
                 "its noisiest authorities insisted on its being received, for good or for\n" +
                 "evil, in the superlative degree of comparison only.";
 
+
+
         // Do all of the Monkey / Thread building here
         // For each Copier(one safe and one unsafe), create and start 5 monkeys copying the introduction to
-        // A Tale Of Two Cities.
+        // A Tale Of Two Cities by Charles Dickens.
+        Runnable notSafe = new UnsafeCopier(introduction);
+        Thread[] notSafeThreads = new Thread[5];
+        for(int i=0; i<notSafeThreads.length; i++){
+            notSafeThreads[i] = new Thread(notSafe);
+            notSafeThreads[i].start();
+        }
+        for(Thread threads: notSafeThreads){
+            threads.join();
+        }
+
+
+        Runnable safe = new SafeCopier(introduction);
+        Thread[] safeThread = new Thread[5];
+        for(int i = 0; i<safeThread.length; i++){
+            safeThread[i] = new Thread(safe);
+            safeThread[i].start();
+        }
+        for(Thread threads: safeThread){
+            threads.join();
+       }
 
 
         // This wait is here because main is still a thread and we want the main method to print the finished copies
@@ -34,5 +58,9 @@ public class MonkeyTypewriter {
         }
 
         // Print out the copied versions here.
+        System.out.println();
+
+
     }
+
 }
