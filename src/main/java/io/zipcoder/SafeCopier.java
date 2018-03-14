@@ -18,9 +18,7 @@ public class SafeCopier extends Copier {
     public void run() {
         sharedLock.lock();
         if (stringIterator.hasNext()) {
-
             copied += stringIterator.next() + " ";
-
         }
         sharedLock.unlock();
     }
