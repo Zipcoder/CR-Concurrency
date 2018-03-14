@@ -19,11 +19,11 @@ public class SafeCopier extends Copier {
 
     public void run() {
         shared.lock();
-        StringBuilder build= new StringBuilder();
         while(stringIterator.hasNext()){
-            build.append(stringIterator.next()).append(" ");
+            copied += stringIterator.next() + " ";
         }
         shared.unlock();
-        System.out.println(build);
+
+
     }
 }

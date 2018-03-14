@@ -4,7 +4,6 @@ package io.zipcoder;
  * Modify the run function so that the monkeys each grab the next word and write it to the copy.
  */
 public class UnsafeCopier extends Copier {
-    String input = "";
 
     public UnsafeCopier(String toCopy) {
         super(toCopy);
@@ -12,9 +11,13 @@ public class UnsafeCopier extends Copier {
 
 
     public void run() {
+        try {
+            Thread.sleep(30);
+        } catch(InterruptedException e) {
+            System.out.println("MAIN INTERRUPTED");
+        }
         while(stringIterator.hasNext()){
-            input = stringIterator.next() + " ";
-            System.out.println(input);
+           copied += stringIterator.next() + " ";
         }
     }
 
