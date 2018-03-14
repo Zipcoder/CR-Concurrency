@@ -15,10 +15,12 @@ public class SafeCopier extends Copier {
     }
 
     public void run() {
-        lock.lock();
-        while(stringIterator.hasNext()){
-            this.copied += stringIterator.next() + " ";
+        while(stringIterator.hasNext()) {
+           if (lock.tryLock()){
+                this.copied += stringIterator.next() + " " + Thread.currentThread().getName();
+                lock.unlock();
+            }
+
         }
-        lock.unlock();
     }
 }

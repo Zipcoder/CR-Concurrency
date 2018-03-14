@@ -27,9 +27,9 @@ public class MonkeyTypewriter {
             thread[i].start();
         }
         //make sure the background thread is run after the threads do their jobs first
-        for (Thread threads : thread){
-            threads.join();
-        }
+//        for (Thread threads : thread){
+//            threads.join();
+//        }
         //safe
         SafeCopier safeCopier = new SafeCopier(introduction);
         Thread[] safeThread = new Thread[5];
@@ -37,9 +37,9 @@ public class MonkeyTypewriter {
             safeThread[i] = new Thread(safeCopier);
             safeThread[i].start();
         }
-        for (Thread safetyThreads : safeThread){
-            safetyThreads.join();
-        }
+//        for (Thread safetyThreads : safeThread){
+//            safetyThreads.join();
+//        }
         // This wait is here because main is still a thread and we want the main method to print the finished copies
         // after enough time has passed.
         try {
