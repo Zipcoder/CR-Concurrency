@@ -57,8 +57,9 @@ public class MonkeyTypewriter {
             System.out.println("MAIN INTERRUPTED");
         }
         // Print out the copied versions here.
+        System.out.println("UNSAFE\n");
         System.out.println(unsafeCopier.copied);
-
+        System.out.println("\nSAFE\n");
         System.out.println(safeCopier.copied);
     }
 }
