@@ -60,10 +60,11 @@ public class MonkeyTypewriter {
         }
 
         // Print out the copied versions here.
-        System.out.println("BEFORE: \n");
+        System.out.println("\n");
+        System.out.println("UNSAFE: \n");
         System.out.println(t.copied);
         System.out.println("\n");
-        System.out.println("AFTER: \n");
+        System.out.println("SAFE: \n");
         System.out.println(st.copied);
     }
 }
