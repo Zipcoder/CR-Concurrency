@@ -1,5 +1,16 @@
 package io.zipcoder;
 
+/**
+ * @TODO
+ * @Part1 - Extend copier in the unsafeCopier class
+ *        - After that create a run method that will
+ *          grab the next word and add it to the copy
+ *        - Modify this class to create 5 threads using
+ *          the unsafierCopier and start them
+ * @Part2 - Finish the safecopier class and call it from
+ *          the main method along with the unsafecopier
+ */
+
 public class MonkeyTypewriter {
     public static void main(String[] args) {
         String introduction = "It was the best of times,\n" +
@@ -23,16 +34,42 @@ public class MonkeyTypewriter {
         // Do all of the Monkey / Thread building here
         // For each Copier(one safe and one unsafe), create and start 5 monkeys copying the introduction to
         // A Tale Of Two Cities.
+        //Safe threads
+        SafeCopier sc = new SafeCopier(introduction); //contstructing safe/unsafe copies of the introduction
+        UnsafeCopier usc = new UnsafeCopier(introduction);
 
-
+        Thread monkeySafe1 = new Thread(sc);
+        Thread monkeySafe2 = new Thread(sc);
+        Thread monkeySafe3 = new Thread(sc);
+        Thread monkeySafe4 = new Thread(sc);
+        Thread monkeySafe5 = new Thread(sc);
+        //Unsafe threads
+        Thread monkeyUnsafe1 = new Thread(usc);
+        Thread monkeyUnsafe2 = new Thread(usc);
+        Thread monkeyUnsafe3 = new Thread(usc);
+        Thread monkeyUnsafe4 = new Thread(usc);
+        Thread monkeyUnsafe5 = new Thread(usc);
+        //For each one of these copiers, make 5 monkeys start copying the intro
+        monkeySafe1.start();
+        monkeySafe2.start();
+        monkeySafe3.start();
+        monkeySafe4.start();
+        monkeySafe5.start();
+        //start unsafe copies
+        monkeyUnsafe1.start();
+        monkeyUnsafe2.start();
+        monkeyUnsafe3.start();
+        monkeyUnsafe4.start();
+        monkeyUnsafe5.start();
         // This wait is here because main is still a thread and we want the main method to print the finished copies
         // after enough time has passed.
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1000); //wait time between each thread request
         } catch(InterruptedException e) {
             System.out.println("MAIN INTERRUPTED");
         }
-
         // Print out the copied versions here.
+        System.out.println(sc.copied + "\n"); //printing will be exactly as expected since it is locked
+        System.out.println(usc.copied); //printing of this will have unpredictable behavior and results are not safe due to lack of lock
     }
 }

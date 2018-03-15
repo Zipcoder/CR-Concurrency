@@ -13,9 +13,9 @@ public abstract class Copier implements Runnable {
 
     public Copier(String toCopy) {
         // Take the input string, split it on spaces, turn that array to an arraylist, and then grab its iterator.
-        this.stringIterator = Arrays.asList(toCopy.split(" ")).iterator();
+        this.stringIterator = Arrays.asList(toCopy.split(" ")).iterator(); //going through each element as long as it exist (for loop?)
         this.copied = "";
     }
 
-    public abstract void run();
+    public abstract void run(); //this abstract class is basically telling us it must be used MUSTTTTTTTTT
 }
