@@ -1,6 +1,7 @@
 package io.zipcoder;
 
 public class MonkeyTypewriter {
+
     public static void main(String[] args) {
         String introduction = "It was the best of times,\n" +
                 "it was the blurst of times,\n" +
@@ -24,15 +25,37 @@ public class MonkeyTypewriter {
         // For each Copier(one safe and one unsafe), create and start 5 monkeys copying the introduction to
         // A Tale Of Two Cities.
 
+        //created threads to avoid making 20 lines
+        UnsafeCopier badCopier = new UnsafeCopier(introduction);
+        SafeCopier safeCopier = new SafeCopier(introduction);
+        Thread[] badCopierMonkeys = new Thread[5];
+        Thread[] safeCopierMonkeys = new Thread[5];
 
-        // This wait is here because main is still a thread and we want the main method to print the finished copies
-        // after enough time has passed.
-        try {
-            Thread.sleep(1000);
-        } catch(InterruptedException e) {
-            System.out.println("MAIN INTERRUPTED");
+
+        while (safeCopier.stringIterator.hasNext() || badCopier.stringIterator.hasNext()) {
+
+            //creating new monkeys...rehabilitating the old ones and releasing them into the wild.
+            for (int i = 0; i < badCopierMonkeys.length; i++) {
+                badCopierMonkeys[i] = new Thread(badCopier);
+                badCopierMonkeys[i].start();
+
+                safeCopierMonkeys[i] = new Thread(safeCopier);
+                safeCopierMonkeys[i].start();
+
+            }
+            // This wait is here because main is still a thread and we want the main method to print the finished copies
+            // after enough time has passed.
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("MAIN INTERRUPTED");
+            }
+
+            System.out.println("Unsafe Copier: " + badCopier.copied + "\n" + "---------------");
+            System.out.println("Safe Copier: " + safeCopier.copied);
+
+
+            // Print out the copied versions here.
         }
-
-        // Print out the copied versions here.
     }
 }
