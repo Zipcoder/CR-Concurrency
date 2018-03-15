@@ -1,5 +1,16 @@
 package io.zipcoder;
 
+/**
+ * @TODO
+ * @Part1 - Extend copier in the unsafeCopier class
+ *        - After that create a run method that will
+ *          grab the next word and add it to the copy
+ *        - Modify this class to create 5 threads using
+ *          the unsafierCopier and start them
+ * @Part2 - Finish the safecopier class and call it from
+ *          the main method along with the unsafecopier
+ */
+
 public class MonkeyTypewriter {
     public static void main(String[] args) {
         String introduction = "It was the best of times,\n" +
@@ -23,6 +34,8 @@ public class MonkeyTypewriter {
         // Do all of the Monkey / Thread building here
         // For each Copier(one safe and one unsafe), create and start 5 monkeys copying the introduction to
         // A Tale Of Two Cities.
+
+
 
 
         // This wait is here because main is still a thread and we want the main method to print the finished copies
