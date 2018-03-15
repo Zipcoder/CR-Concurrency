@@ -1,5 +1,7 @@
 package io.zipcoder;
 
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+
 public class MonkeyTypewriter {
     public static void main(String[] args) {
         String introduction = "It was the best of times,\n" +
@@ -24,9 +26,37 @@ public class MonkeyTypewriter {
         // For each Copier(one safe and one unsafe), create and start 5 monkeys copying the introduction to
         // A Tale Of Two Cities.
 
+        //creation of unsafe threads with the object being passed into; additionally starting threads
+        UnsafeCopier unsafeCopier = new UnsafeCopier(introduction);
+
+        Thread UnsafeMonkeys1 = new Thread(unsafeCopier);
+        Thread UnsafeMonkeys2 = new Thread(unsafeCopier);
+        Thread UnsafeMonkeys3 = new Thread(unsafeCopier);
+        Thread UnsafeMonkeys4 = new Thread(unsafeCopier);
+        Thread UnsafeMonkeys5 = new Thread(unsafeCopier);
+
+      UnsafeMonkeys1.start();
+      UnsafeMonkeys2.start();
+      UnsafeMonkeys3.start();
+      UnsafeMonkeys4.start();
+      UnsafeMonkeys5.start();
+
+        SafeCopier safeCopier = new SafeCopier(introduction);
+        Thread SafeMonkeys1 = new Thread(safeCopier);
+        Thread SafeMonkeys2 = new Thread(safeCopier);
+        Thread SafeMonkeys3 = new Thread(safeCopier);
+        Thread SafeMonkeys4 = new Thread(safeCopier);
+        Thread SafeMonkeys5 = new Thread(safeCopier);
+
+        SafeMonkeys1.start();
+        SafeMonkeys2.start();
+        SafeMonkeys3.start();
+        SafeMonkeys4.start();
+        SafeMonkeys5.start();
 
         // This wait is here because main is still a thread and we want the main method to print the finished copies
         // after enough time has passed.
+
         try {
             Thread.sleep(1000);
         } catch(InterruptedException e) {
@@ -34,5 +64,7 @@ public class MonkeyTypewriter {
         }
 
         // Print out the copied versions here.
+        System.out.println(safeCopier.copied);
+        System.out.println(unsafeCopier.copied);
     }
 }
