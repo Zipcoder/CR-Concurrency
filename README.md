@@ -1,4 +1,4 @@
-# TC-Concurrency
+-Concurrency
 
 ## Monkey Typewriter
 According to Wikipedia:
