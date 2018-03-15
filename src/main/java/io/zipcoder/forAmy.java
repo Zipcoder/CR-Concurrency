@@ -1,5 +1,12 @@
 package io.zipcoder;
 
+public class forAmy {
+}
+
+/*
+
+package io.zipcoder;
+
 public class MonkeyTypewriter {
     public static void main(String[] args) {
         String introduction = "It was the best of times,\n" +
@@ -24,42 +31,18 @@ public class MonkeyTypewriter {
         // For each Copier(one safe and one unsafe), create and start 5 monkeys copying the introduction to
         // A Tale Of Two Cities.
 
+        UnsafeCopier myUnsafeCopier = new UnsafeCopier(introduction);
+        Copier mySafeCopier = new SafeCopier(introduction);
+        Thread[] mySafeThreads = new Thread[5];
+        Thread[] myUnsafeThreads = new Thread[5];
 
-        UnsafeCopier testCopier = new UnsafeCopier(introduction);
-        Thread monkey1 = new Thread(testCopier);
-        Thread monkey2 = new Thread(testCopier);
-        Thread monkey3 = new Thread(testCopier);
-        Thread monkey4 = new Thread(testCopier);
-        Thread monkey5 = new Thread(testCopier);
-        Thread monkey6 = new Thread(testCopier);
-        monkey1.start();
-        monkey2.start();
-        monkey3.start();
-        monkey4.start();
-        monkey5.start();
-        monkey6.start();
+        for (int i =0; i <mySafeThreads.length; i++){
+            mySafeThreads[i] = new Thread(myUnsafeCopier);
+        }
 
-
-        SafeCopier mySafeCopier = new SafeCopier(introduction);
-
-        Thread frederick = new Thread(mySafeCopier);
-        Thread allessandra = new Thread(mySafeCopier);
-        Thread allison = new Thread(mySafeCopier);
-        Thread addison = new Thread(mySafeCopier);
-        Thread ricardo = new Thread(mySafeCopier);
-        Thread fernando = new Thread(mySafeCopier);
-
-        frederick.start();
-        allessandra.start();
-        allison.start();
-        addison.start();
-        ricardo.start();
-        fernando.start();
-
-
-
-
-
+        for (Thread element: mySafeThreads){
+            element.start();
+        }
 
         // This wait is here because main is still a thread and we want the main method to print the finished copies
         // after enough time has passed.
@@ -74,5 +57,71 @@ public class MonkeyTypewriter {
         System.out.println(mySafeCopier.copied);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
+        UnsafeCopier testCopier = new UnsafeCopier(introduction);
+
+        Thread monkey1 = new Thread(testCopier);
+        Thread monkey2 = new Thread(testCopier);
+        Thread monkey3 = new Thread(testCopier);
+        Thread monkey4 = new Thread(testCopier);
+        Thread monkey5 = new Thread(testCopier);
+        Thread monkey6 = new Thread(testCopier);
+
+        monkey1.start();
+        monkey2.start();
+        monkey3.start();
+        monkey4.start();
+        monkey5.start();
+        monkey6.start();
+
+        */
+
+//   Thread frederick = new Thread(mySafeCopier);
+//        Thread allessandra = new Thread(mySafeCopier);
+//        Thread allison = new Thread(mySafeCopier);
+//        Thread addison = new Thread(mySafeCopier);
+//        Thread ricardo = new Thread(mySafeCopier);
+//        Thread fernando = new Thread(mySafeCopier);
+
+
+
+
+
+
+//
+//        while(mySafeCopier.stringIterator.hasNext()) {
+//            //start here
+//            frederick.start();
+//            allessandra.start();
+//            allessandra.start();
+//            allison.start();
+//            addison.start();
+//            ricardo.start();
+//            fernando.start();
+//
+//
+//        }
+//
+
+
 
 

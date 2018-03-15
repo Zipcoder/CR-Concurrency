@@ -5,10 +5,38 @@ package io.zipcoder;
  */
 public class UnsafeCopier extends Copier {
 
+//    StringBuilder myUnsafeBuilder = new StringBuilder();
+
     public UnsafeCopier(String toCopy) {
+
         super(toCopy);
     }
 
-    public void run() {
+    public void run(){
+        while (stringIterator.hasNext()) {
+            copied += stringIterator.next() + " ";
+        }
     }
 }
+
+//    public void run() {
+//
+//        while(stringIterator.hasNext()){
+//            copied = stringIterator.next() + " ";
+//            myUnsafeBuilder.append(copied);
+//        }
+//
+//        copied = myUnsafeBuilder.toString();
+//
+//        System.out.println(copied);
+//
+//    }
+
+//    public StringBuilder getMyUnsafeBuilder() {
+//
+//        copied = myUnsafeBuilder.toString();
+//
+//        return myUnsafeBuilder;
+//    }
+
+
