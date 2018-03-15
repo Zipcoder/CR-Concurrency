@@ -19,3 +19,10 @@ public abstract class Copier implements Runnable {
 
     public abstract void run();
 }
+
+/**Runnable is a interface,
+ * to implement runnable there is a method called run that gets implemented in the background
+ * and the copier class is abstract but it has a run method stubbed out which all of the
+ * subclasses have to implement. Unsafe and safe copier both have their own run method which are
+ * both slightly different.
+ */
