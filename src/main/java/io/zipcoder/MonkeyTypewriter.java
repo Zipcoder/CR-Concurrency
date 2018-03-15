@@ -1,5 +1,7 @@
 package io.zipcoder;
 
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+
 public class MonkeyTypewriter {
     public static void main(String[] args) {
 
@@ -27,17 +29,17 @@ public class MonkeyTypewriter {
 
         UnsafeCopier unsafeCopier = new UnsafeCopier(introduction);
 
-        Thread monkey1= new Thread(unsafeCopier);
-        Thread monkey2= new Thread(unsafeCopier);
-        Thread monkey3= new Thread(unsafeCopier);
-        Thread monkey4= new Thread(unsafeCopier);
-        Thread monkey5= new Thread(unsafeCopier);
+        Thread monkeyUnsafe1= new Thread(unsafeCopier);
+        Thread monkeyUnsafe2= new Thread(unsafeCopier);
+        Thread monkeyUnsafe3= new Thread(unsafeCopier);
+        Thread monkeyUnsafe4= new Thread(unsafeCopier);
+        Thread monkeyUnsafe5= new Thread(unsafeCopier);
 
-        monkey1.start();
-        monkey2.start();
-        monkey3.start();
-        monkey4.start();
-        monkey5.start();
+        monkeyUnsafe1.start();
+        monkeyUnsafe2.start();
+        monkeyUnsafe3.start();
+        monkeyUnsafe4.start();
+        monkeyUnsafe5.start();
 
 
         SafeCopier safeCopier = new SafeCopier(introduction);
@@ -64,6 +66,12 @@ public class MonkeyTypewriter {
         }
 
         // Print out the copied versions here.
+        System.out.println("Unsafe:");
+        System.out.println("------------------------");
+        System.out.println(unsafeCopier.copied);
+        System.out.println();
+        System.out.println("Safe:");
+        System.out.println("------------------------");
         System.out.println(safeCopier.copied);
 
     }

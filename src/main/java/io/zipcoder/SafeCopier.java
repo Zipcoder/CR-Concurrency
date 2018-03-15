@@ -1,6 +1,7 @@
 package io.zipcoder;
 
 import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -15,12 +16,17 @@ public class SafeCopier extends Copier{
     Lock sharedLock = new ReentrantLock();
 
     public void run() {
+        try{
+            TimeUnit.MILLISECONDS.sleep(25);
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         while(stringIterator.hasNext()){
             sharedLock.lock();
             try {
                 //sharedLock.lock();
-                copied += stringIterator.next() + " " + Thread.currentThread().getName();
+                copied += stringIterator.next() + " " + Thread.currentThread().getName() + " ";
             }catch(NoSuchElementException e){}
             finally{
                 sharedLock.unlock();
