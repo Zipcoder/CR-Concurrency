@@ -40,9 +40,10 @@ public class MonkeyTypewriter {
         for (Thread thread : unsafeMonkey) {
                 thread.start();
             }
-            for (Thread thread : safeMonkey) {
+
+        for (Thread thread : safeMonkey) {
                 thread.start();
-            }
+        }
 
 //       while ( unsafeCopier.stringIterator.hasNext() || safeCopier.stringIterator.hasNext()) {
 //

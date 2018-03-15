@@ -1,7 +1,7 @@
 package io.zipcoder;
 
-import sun.nio.ch.ThreadPool;
-
+import java.util.Iterator;
+//import java.util.NoSuchElementException;
 import java.util.NoSuchElementException;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -34,4 +34,19 @@ public class SafeCopier extends Copier{
         }
 
     }
+
+
+//    public void run() {
+//        addToCopy(stringIterator);
+//    }
+//    synchronized void addToCopy(Iterator<String> is) {
+//        while (is.hasNext()) {
+//            try {
+//                String str = is.next();
+//                copied += str + " " + Thread.currentThread().getName() + " ";
+//            } catch (NoSuchElementException e) {
+//
+//            }
+//        }
+//    }
 }
