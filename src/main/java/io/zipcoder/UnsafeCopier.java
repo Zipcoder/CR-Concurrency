@@ -11,7 +11,7 @@ public class UnsafeCopier extends Copier {
 
     public void run() {
         while (this.stringIterator.hasNext()){ //while the iterator/monkey/thread has the next string , try locking it
-            this.copied += this.stringIterator.next() + "";
+            this.copied += this.stringIterator.next() + " ";
         }
     }
 }
