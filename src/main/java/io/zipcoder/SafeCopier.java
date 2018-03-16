@@ -34,19 +34,4 @@ public class SafeCopier extends Copier{
         }
 
     }
-
-
-//    public void run() {
-//        addToCopy(stringIterator);
-//    }
-//    synchronized void addToCopy(Iterator<String> is) {
-//        while (is.hasNext()) {
-//            try {
-//                String str = is.next();
-//                copied += str + " " + Thread.currentThread().getName() + " ";
-//            } catch (NoSuchElementException e) {
-//
-//            }
-//        }
-//    }
 }
