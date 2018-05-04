@@ -1,7 +1,15 @@
 package io.zipcoder;
 
 
-public class MonkeyTypewriter{
+import java.util.NoSuchElementException;
+
+public class MonkeyTypewriter extends Copier{
+
+    public MonkeyTypewriter(String toCopy) {
+        super(toCopy);
+    }
+
+
 
     public static void main(String[] args) throws InterruptedException {
         String introduction = "It was the best of times,\n" +
@@ -28,15 +36,14 @@ public class MonkeyTypewriter{
         // For each Copier(one safe and one unsafe), create and start 5 monkeys copying the introduction to
         // A Tale Of Two Cities by Charles Dickens.
 
+
         UnsafeCopier notSafe = new UnsafeCopier(introduction);
         Thread[] notSafeThreads = new Thread[5];
-        for(int i=0; i<notSafeThreads.length; i++){
+        for (int i = 0; i < notSafeThreads.length; i++) {
             notSafeThreads[i] = new Thread(notSafe);
             notSafeThreads[i].start();
         }
-        for(Thread threads: notSafeThreads){
-            threads.join();
-        }
+
 
 
         SafeCopier safe = new SafeCopier(introduction);
@@ -45,9 +52,6 @@ public class MonkeyTypewriter{
             safeThread[i] = new Thread(safe);
             safeThread[i].start();
         }
-        for(Thread threads: safeThread){
-            threads.join();
-       }
 
 
         // This wait is here because main is still a thread and we want the main method to print the finished copies
@@ -66,4 +70,8 @@ public class MonkeyTypewriter{
 
     }
 
+    @Override
+    public void run() {
+
+    }
 }

@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class SafeCopier extends Copier {
 
-    Lock shared = new ReentrantLock() {
+    private Lock shared = new ReentrantLock() {
     };
 
     public SafeCopier(String toCopy) {
